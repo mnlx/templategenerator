@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="code">
+
+    </div>
+    <script src="./node_modules/"></script>
+    <script type="text/babel">
+    var temp = "this is nothing";
+    var templateTextArea = <textarea name="XML-template" id="" value={temp} cols="200" rows="10"  />;
+
+
+    
+    class Clock extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {date: new Date()};
+        }
+
+        componentDidMount() {
+            this.timerID = setInterval(
+            () => this.tick(),
+            1000
+            );
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.timerID);
+        }
+
+        tick() {
+            this.setState({
+            date: new Date()
+            });
+        }
+
+        render() {
+            return (
+            <div>
+                <h1>Hello, world!</h1>
+                <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+                <TemplateArea name="Andre"/>
+            </div>
+            );
+        }
+        }
+
+        class TemplateArea extends React.Component {
+            render(){
+                return <h1>Test, {this.props.name}</h1>;
+            }
+        }
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      To set up a production-ready React build environment, follow these instructions:
+      * https://reactjs.org/docs/add-react-to-a-new-app.html
+      * https://reactjs.org/docs/add-react-to-an-existing-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      * https://reactjs.org/docs/react-without-jsx.html
+      * https://reactjs.org/docs/cdn-links.html
+    -->
+</body>
+
+</html>
