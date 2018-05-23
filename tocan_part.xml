@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "http://big.faceless.org/products/report/report-1.1.dtd">
+
+<pdf>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="title" value="Certificado Aproveitamento"/>
+        <meta name="author" value="Senar"/>
+        <style>
+            /* Reset */
+            body, table, td, tr, div, p {margin: 0mm; padding: 0mm;}
+            table { border-collapse: collapse; }
+            td { vertical-align: middle; }
+
+            .col-100 {width: 100%;}
+            .col-50 {width: 50%;}
+            .center {text-align: center;}
+            .right {text-align: right;}
+            .to-right {float: right;}
+            .left {text-align: left;}
+            .to-left {float: left;}
+            .upper {text-transform: uppercase;}
+            .no-margin {margin: 0mm;}
+            .no-padding {padding: 0mm;}
+            .text-42 {font-size: 42pt; line-height: 42pt;}
+            .text-14 {font-size: 14pt; line-height: 12pt;}
+            .text-12 {font-size: 12pt; line-height: 12pt;}
+            .text-11 {font-size: 11pt; line-height: 11pt;}
+            .text-10 {font-size: 10pt; line-height: 13pt;}
+            .font-times {font-family: "Times New Roman", Times, Serif;}
+            .text-juts {text-align: justify;}
+            .border {border: 0.1mm solid black;}
+            .border-left {border-left: solid 0.1mm black;}
+            .border-right {border-right: solid 0.1mm black;}
+            .border-top {border-top: solid 0.1mm black;}
+            .border-bottom {border-bottom: solid 0.1mm black;}
+
+            #frente {padding: 30mm 22mm 18mm 22mm;}
+            #frente > p {line-height: 18pt;}
+            #frente-texto {margin-top: 40mm;padding-left: 70px; padding-right: 40px;}
+            #frente-texto p {text-align: justify-all; margin-top: 4mm; }
+            #frente-local-data {margin-top: 10mm; margin-right: 40px;}
+            #frente-assinaturas {margin-top: 8mm;}
+
+            #verso {padding: 4mm; }
+            #verso table {table-layout: fixed;}
+            #verso table tr {margin-bottom: 1mm;}
+            #verso table td {padding: 3mm;}
+            #verso table td.slim {padding: 1mm 3mm;}
+            #verso table tr td:first-child {border-left: solid 0.1mm black;}
+            #verso table tr td:last-child {border-right: solid 0.1mm black;}
+            #verso table tr td span.title {margin-right: 5mm;}
+            #verso table tr td.large {padding: 4mm 4mm 8mm 4mm;}
+        </style>
+    </head>
+    <body lang="en-US" size="A4-landscape">
+    <%for (var i=0; i < certificados.length; i++) {%>
+        <div id="frente" class="col-100">
+            <p id="frente-titulo" class="col-100 center text-42 font-times">
+                <i> CERTIFICADO </i>
+            </p>
+
+            <div id="frente-texto" class="col-100 font-times text-juts text-14">
+                <blockquote style="width:865px; margin-left:-35px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O
+                    Serviço Nacional de Aprendizagem Rural - SENAR-AR/TO confere o presente certificado ao (à) Sr. (a)
+                    <u><span style="font-family:Arial; text-transform:uppercase;">&nbsp;<%=certificados[i].participante%>&nbsp;</span></u>
+                    , CPF nº <u><strong><%=certificados[i].rg%></strong></u>, por sua participação no treinamento
+                    <u><span>&nbsp;<%=certificados[i].curso%>&nbsp;</span></u>
+                    , realizado (a) em
+                    <u><span>&nbsp;<%=certificados[i].local_evento%>&nbsp;</span></u>
+                    , no período de
+                    <u><span>&nbsp;<%=certificados[i].data_inicio%> a <%=certificados[i].data_fim%>&nbsp;</span></u>
+                    com carga horária total de
+                    <u><span>&nbsp;<%=certificados[i].carga_horaria%>&nbsp;</span></u>
+                    horas.
+                </blockquote>
+            </div>
+
+            <p id="frente-local-data" class="col-100 font-times right text-14">
+                <i>
+                    <%=certificados[i].uf_cidade%>, <%=certificados[i].uf_sigla%>,
+                    <%=certificados[i].data_primeira_via_dia%> de <%=certificados[i].data_primeira_via_mes%> de <%=certificados[i].data_primeira_via_ano%>.
+                </i>
+            </p>
+
+            <div id="frente-assinaturas" class="col-100 font-times">
+                <table class="col-100">
+                    <tr>
+                        <td class="col-50">
+                            <img style="z-index: 9999; position: absolute; left: 10mm" src="<%=certificados[i].assinatura_conselho%>" width="240" height="85"/>
+                            <p class="text-14 center" style="padding-top: 15mm; line-height: 14pt;">
+                                _______________________________________ <br/>
+                                Presidente do Cons. Adm do <%=certificados[i].nome_unidade%><br/>
+                                <%=certificados[i].nome_conselho%>
+                            </p>
+                        </td>
+                        <td class="col-50" align="right">
+                            <p class="text-14 center" style="padding-top: 15mm; line-height: 14pt;">
+                                _______________________________________ <br/>
+                                Superintendente<br/>
+                                Rayley Campos Luzza
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <pbr/>
+
+        <div id="verso" class="col-100">
+            <table class="col-100 font-times">
+                <tr class="border text-12">
+                    <td class="upper" colspan="4" white-space="nowrap">
+                        <span class="title">
+                            <strong>
+                                Colaboradores:
+                            </strong>
+                        </span>
+                        <span>
+                            <i>
+                                <%=certificados[i].colaboradores%>
+                            </i>
+                        </span>
+                    </td>
+                    <td class="upper" align="right" colspan="3" white-space="nowrap">
+                        <span>
+                            <i>
+                                Serviço Nacional de Aprendizagem Rural
+                            </i>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="border text-12">
+                    <td class="upper" colspan="7" white-space="nowrap">
+                        <span class="title">
+                            <strong>
+                                Ocupação:
+                            </strong>
+                        </span>
+                        <span>
+                            <i>
+                                <%=certificados[i].ocupacao%>
+                            </i>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="border text-12">
+                    <td class="upper" colspan="7" white-space="nowrap">
+                        <span class="title">
+                            <strong>
+                                Natureza da programação:
+                            </strong>
+                        </span>
+                        <span>
+                            <i>
+                                <%=certificados[i].natureza_prog%>
+                            </i>
+                        </span>
+                    </td>
+                </tr>
+
+                <tr class="border text-10">
+                    <td class="slim upper center" colspan="4">
+                        <p class="col-100 center">
+                            <strong>
+                                Conteúdo
+                            </strong>
+                        </p>
+                    </td>
+                    <td class="slim upper border-right border-left" colspan="1">
+                        <p class="col-100 center">
+                            <strong class="col-100 center">
+                                Carga Horária
+                            </strong>
+                        </p>
+                    </td>
+                    <td class="slim upper" colspan="2">
+                        <strong>
+                            Educadores
+                        </strong>
+                    </td>
+                </tr>
+
+                <tr class="border text-10">
+                    <td class="large center" colspan="4" vertical-align="top" height="120mm">
+                        <i>
+                            <%=certificados[i].conteudo%>
+                        </i>
+                    </td>
+                    <td class="large border-right border-left" colspan="1" vertical-align="top">
+                        <p class="col-100 center">
+                            <%=certificados[i].carga_horaria_certificado%> horas
+                        </p>
+                    </td>
+                    <td class="large upper" colspan="2" vertical-align="top">
+                        <i>
+                            <%=certificados[i].instrutor%>
+                        </i>
+                    </td>
+                </tr>
+
+                <tr padding="0">
+                    <td colspan="3" border="none" padding="0">
+                        <table class="font-times text-10">
+                            <tr margin="0">
+                                <td class="slim border-top border-right">
+                                    <strong>
+                                        Nrº REGISTRO
+                                    </strong>
+                                </td>
+                                <td class="slim border-top" colspan="3">
+                                    <i>
+                                        <%=certificados[i].numero_certificado%>
+                                    </i>
+                                </td>
+                            </tr>
+                            <tr margin="0">
+                                <td class="slim border-top border-right">
+                                    <strong>
+                                        LIVRO
+                                    </strong>
+                                </td>
+                                <td class="slim border-top border-right">
+                                    <i>
+                                        <%=certificados[i].numero_livro%>
+                                    </i>
+                                </td>
+                                <td class="slim border-top border-right">
+                                    <strong>
+                                        PÁGINA
+                                    </strong>
+                                </td>
+                                <td class="slim border-top">
+                                    <i>
+                                        <%=certificados[i].numero_pagina%>
+                                    </i>
+                                </td>
+                            </tr>
+                            <tr margin="0">
+                                <td class="slim border-top border-bottom border-right">
+                                    <strong>
+                                        DATA
+                                    </strong>
+                                </td>
+                                <td class="slim border-top border-bottom" colspan="3">
+                                    <%=certificados[i].data_primeira_via%>
+                                </td>
+                            </tr>
+                            <tr margin="0">
+                                <td class="slim" border="none" colspan="5" line-height="9pt">
+                                    <strong>
+                                        Encarregado
+                                    </strong>
+                                    <span class="upper">
+                                        <%=certificados[i].responsavel%>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <td colspan="4" border="0" padding="0">
+                        <p margin-top="16mm" line-height="14pt" class="upper center text-12">
+                            ______________________________________________________<br/>
+                            <strong>
+                                Participante
+                            </strong>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <%}%>
+    </body>
+</pdf>
